@@ -18,7 +18,7 @@
         }
     } = json
 
-    console.log(city, country, flag)
+    //console.log(city, country, flag)
 
     await fetch('/visit', {
         method: 'POST',
@@ -55,7 +55,7 @@
         const { city, country, flag } = JSON.parse(event.data)
         const message = `Last visit from ${city}, ${country} ${flag}`
         const isLastEmpty = $last.innerHTML === ''
-        console.log(isLastEmpty)
+        //console.log(isLastEmpty)
 
         if(isLastEmpty){
             $last.innerHTML = message
