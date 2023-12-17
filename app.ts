@@ -3,7 +3,7 @@
 //no es socket, sockets son bidireccional, pero server side events unidireccionales servidor -> cliente
 
 import { Hono } from "https://deno.land/x/hono@v3.11.6/mod.ts"
-import { serveStatic } from "https://deno.land/x/hono@v3.11.6/middleware.ts"
+import { cors, serveStatic } from "https://deno.land/x/hono@v3.11.6/middleware.ts"
 import { streamSSE } from "https://deno.land/x/hono@v3.11.6/helper/streaming/index.ts"
 
 const db = await Deno.openKv()
@@ -16,6 +16,7 @@ interface LastVisit {
     flag: string
 }
 
+app.use(cors())
 app.get('/', serveStatic({ path: './index.html' }))
 
 /* app.post('/counter', async (c) => {
