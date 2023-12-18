@@ -1,6 +1,6 @@
 <small>
-    <span id="last"></span>
-    <span id="next"></span>
+    <div id="last"></div>
+    <div id="next"></div>
 </small>
 
 <script type="module">
@@ -44,12 +44,12 @@
 
     //uso $ en las variables para identificar aquellas que son del dom
     const source = new EventSource('/visit')
-    const $last = document.getElementById('last') 
+    const $last = document.getElementById('last')
     const $next = document.getElementById('next')
     let ready = true
 
     source.addEventListener('update', (event) => {
-        if (ready === false){
+        if (ready === false) {
             return
         }
         const { city, country, flag } = JSON.parse(event.data)
@@ -57,7 +57,7 @@
         const isLastEmpty = $last.innerHTML === ''
         //console.log(isLastEmpty)
 
-        if(isLastEmpty){
+        if (isLastEmpty) {
             $last.innerHTML = message
             return
         }
@@ -72,8 +72,8 @@
             $next.style.animation = ''
             $last.style.animation = ''
 
-            $next.innerHTML = message
-            $last.innerHTML = ''
+            $last.innerHTML = message
+            $next.innerHTML = ''
 
             ready = true
         }
@@ -82,20 +82,17 @@
 </script>
 
 <style>
-    body {
-        background-color: #000;
-        display: grid;
-        place-content: center;
-        min-height: 100vh;
-    }
     small {
+        position: absolute;
+        inset: 0;
         font-size: 12px;
-        color: #f6f6f6;
-        text-align: center;
+        color: #6f6f6f;
         font-family: Menlo, monospace;
+        text-align: center;
+        padding: 16px;
     }
-    small span {
-        display: block;
+
+    small div {
         height: 20px;
     }
 
